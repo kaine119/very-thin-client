@@ -1,0 +1,23 @@
+<% if !@counters.blank? %>
+  <h1><%= @counters.count %> counters</h1>
+  <section>
+    <% for counter in @counters %>
+      <div class="counter">
+        <div class="counter__head">
+          <%= button_to "-", {:action => "update", :id => counter, count: :down}, method: :put %>
+          <%= counter.name %>: <%= counter.count %>
+          <%= button_to "+", {:action => "update", :id => counter, count: :up}, method: :put %>
+        </div>
+        <div class="counter__delete">
+          <%= button_to "x", {:action => "destroy", :id => counter}, method: :delete %>
+        </div>
+      </div>
+    <% end %>
+    <%= link_to "Add new counter", :action => "new" %>
+  </section>
+<% else %>
+  <h1>There aren't any counters yet.</h1>
+  <section>
+    <%= link_to "Add new counter", :action => "new" %>
+  </section>
+<% end %>
